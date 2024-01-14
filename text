@@ -1,0 +1,74 @@
+<!-- - Gọi API(react query = tanStack Query: version 4) , axios
+
+B1: roo-provider.js
+
++ tanStack Query => SSR & Next.js => app/providers.jsx => install @tanstack/react-query. (đầy đủ hàm bên dưới)
+
+Viết tiếp hàm trên :
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 0, //Thời gian để cache không revalide lại trong thời gian set phút, sau sau thời gian set thì query sẽ được fetch lại nếu truy cập
+            gcTime: 1000 * 60 * 5, //Sẽ dọn dẹp cache nếu cache đó bị vô hiệu hóa (ví dụ cache ở trang A nhưng user sang trang B và họ ở đón hơn 5p ) thì cache ở trang A sẽ được dọn dẹp
+            refetchOnWindowFocus: false, //Khong fetch lại data khi ấn chuột vào bất cứ đâu trong trình duyệt
+            refetchOnReconnect: false, //Không fetch lại data khi mất kết nối và sau đó có kết nối lại internet
+            retryOnMount: false, //Không retry lại data nếu query đó có error xảy ra
+          },
+        },
+      }),
+  );
+
+=>   const [queryClient] = React.useState(() => new QueryClient())  "Khỏi tạo trong hàm RootProvider"
+
+=>   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider> //Bọc children của root-provider
+
+
+B2:axios-instance.js
+
+=> install axios
+=> Đến trang https://axios-http.com/docs/intro
+=> vào https://axios-http.com/docs/instance
+=> Vào tiếp https://axios-http.com/docs/interceptors
+
+=> sửa axios thành axiosInstence, Thay axios thành axiosInstence cho cả request và response
+
+=> Tạo base url rồi gọi vào (base của API: ví dụ 'NEXT_PUBLIC_API_URL=http://localhost:3001')
+
+B3: app/admin/_services
+=> import axiosInstance đã tạo ở file axios.js
+
+=> Tạo hàm addAccount = (data)=>{
+    return axiosInstance.post('createUser', data) // createUser (Api)
+}
+
+B4: app/admin/_hooks
+
+=> use-add-account.js
+=> vào trang tanSTack Query => API REFERENCE => useMutation
+=> Tạo hàm useAddAccount => Tạo tiếp trong hàm trên
+const mutationResults = useMutation({  '3 đối tượng trong hàm này là mutationFn, onSuccess, onError'
+    mutationFN: (data)=>{
+        return addAcount(data) //addAcount đã tạo ở  service
+    }
+
+        })
+
+=> khởi tạo hàm const { message } = App.useApp(); để có được message thông báo UI
+
+
+
+B5: Vào page.js foder muốn sử dụng api để xử lí
+
+ -->
+
+ <!-- Thêm app vào layout cha của ứng dụng để gọi message antd => App => Basic usage => Thêm <App></App> bọc {chidren} lấy message thông báo cho người dùng -->
+
+
+
+ <!-- Các bước gọi file api 
+  B1: service 
+  B2: Hooks
+  B3: page
+-->

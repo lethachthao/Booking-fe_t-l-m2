@@ -36,7 +36,7 @@ export const MenuRoutes = [
     key: 'medical-specialty-manager',
     icon: <UserOutlined />,
     label: (
-      <Link href="/admin/medical-specialty-manager">Quản lí tài khoản</Link>
+      <Link href="/admin/medical-specialty-manager">Quản lí chuyên khoa</Link>
     ),
   },
   //Quản lí Lịch trình
@@ -50,7 +50,9 @@ export const MenuRoutes = [
     key: 'medical-examination-history',
     icon: <FileOutlined />,
     label: (
-      <Link href="/admin/medical-examination-history">Quản lí lịch trình</Link>
+      <Link href="/admin/medical-examination-history">
+        Quản lí lịch sử khám bệnh
+      </Link>
     ),
   },
 ];

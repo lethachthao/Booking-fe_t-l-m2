@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+const { useState } = require('react');
 export const useToggle = (initialToggle) => {
   const [toggleState, setToggleState] = useState(initialToggle || false);
 
