@@ -2,15 +2,15 @@ const { useState } = require('react');
 export const useToggle = (initialToggle) => {
   const [toggleState, setToggleState] = useState(initialToggle || false);
 
-  const on = () => {
+  const open = () => {
     setToggleState(true);
   };
-  const off = () => {
+  const closs = () => {
     setToggleState(false);
   };
   const toggle = () => {
     setToggleState(!toggle);
   };
 
-  return { toggle, on, off, toggleState };
+  return { toggle, open, closs, toggleState };
 };

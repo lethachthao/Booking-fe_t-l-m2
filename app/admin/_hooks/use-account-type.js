@@ -1,11 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-import { getAccountType } from '../_services/account-service';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { App } from 'antd';
+import { getAccountByType } from '../_services/account-service';
 
-export const useAccountType = (type) => {
+const useAccountType = (type) => {
   return useQuery({
     queryKey: ['account-type'],
     queryFn: () => {
-      return getAccountType(type);
+      return getAccountByType(type);
     },
-  });
+  }); //https://tanstack.com/query/latest/docs/react/reference/useQuery
 };
+export default useAccountType;

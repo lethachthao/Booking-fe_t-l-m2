@@ -14,20 +14,22 @@ const initialData = {
   role: '',
 };
 
-const UserForm = ({
+const AddUserForm = ({
   isSubmitting = false,
-  defaultData = initialData,
+  defaultData = { initialData },
   onSubmit,
 }) => {
-  const { name, email, phoneNumber, address, password, accountType, role } =
+  const { name, phoneNumber, address, accountType, role, email, password } =
     defaultData;
+
   const [form] = Form.useForm();
   const nameValue = Form.useWatch('name', form);
 
-  console.log(defaultData);
+  // console.log(defaultData);
 
   const onFinish = (values) => {
     onSubmit?.({ ...defaultData, ...values });
+    form.resetFields();
   };
   return (
     <div className="flex flex-col rounded-xl gap-4 bg-white p-8">
@@ -49,7 +51,7 @@ const UserForm = ({
         >
           <div className="flex flex-col items-center text-center gap-2">
             <Avatar size={80} icon={<UserOutlined />} />
-            <span className="font-bold text-lg"> {nameValue || ''}</span>
+            {/* <span className="font-bold text-lg"> {nameValue || ''}</span> */}
           </div>
           <Form.Item name="id" hidden noStyle>
             <Input placeholder="Id " readOnly />
@@ -170,7 +172,7 @@ const UserForm = ({
 
           <Form.Item>
             <Button type="primary" htmlType="submit" block>
-              {!defaultData ? 'Tạo tài khoản' : 'cập nhật tài khoản'}
+              {!defaultData ? 'Tạo tài khoản' : 'Cập nhật tài khoản'}
             </Button>
           </Form.Item>
         </Form>
@@ -178,4 +180,4 @@ const UserForm = ({
     </div>
   );
 };
-export default UserForm;
+export default AddUserForm;

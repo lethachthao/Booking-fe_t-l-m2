@@ -1,7 +1,5 @@
 import { Inter } from 'next/font/google';
 import '../style/globals.css';
-import { cn } from '@/utils/cn';
-import { fontInter } from '../lib/font';
 import RootProvider from '@/components/provider/root-provider';
 import { App } from 'antd';
 
@@ -15,13 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr">
-      <body
-        className={cn(
-          fontInter.variable,
-          'overflow-x-hidden min-h-full text-base',
-        )}
-      >
+      <body>
         <RootProvider>
+          {/* https://ant.design/components/app  - message App */}
           <App>
             <main className=" relative" role="main">
               {children}

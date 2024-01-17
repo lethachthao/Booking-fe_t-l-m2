@@ -1,15 +1,18 @@
 'use client';
 
-import UserForm from '../_components/form/add-user';
-import useAddAccount from '../../_hooks/use-add-account';
+import AddUserForm from '../_components/form/add-user';
+import useAddAccont from '../../_hooks/use-add-account';
+import { useState } from 'react';
 
 const AddAccount = () => {
-  const { mutate } = useAddAccount();
+  const [addData, setAddData] = useState('');
+  const { mutate } = useAddAccont();
   const addUserHanlder = (value) => {
     mutate(value);
+    setAddData('');
   };
 
-  return <UserForm onSubmit={addUserHanlder} />;
+  return <AddUserForm onSubmit={addUserHanlder} />;
 };
 
 export default AddAccount;

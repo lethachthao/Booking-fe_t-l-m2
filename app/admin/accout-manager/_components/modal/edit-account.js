@@ -1,5 +1,5 @@
 import { Modal } from 'antd';
-import UserForm from '../form/add-user';
+import AddUserForm from '../form/add-user';
 
 const EditAccountModal = ({
   isOpen,
@@ -11,18 +11,18 @@ const EditAccountModal = ({
   return (
     <Modal
       open={isOpen}
-      title="Edit account"
+      title="Edit Account"
       footer={null}
       onCancel={onCancel}
       destroyOnClose
     >
-      <UserForm
+      <AddUserForm
         defaultData={data}
         isSubmitting={isSubmitting}
         onSubmit={onSubmit}
+        destroyOnClose
       />
     </Modal>
   );
 };
-
 export default EditAccountModal;

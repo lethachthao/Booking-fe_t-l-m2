@@ -1,8 +1,8 @@
 'use client';
 
+import useAccountType from '../../_hooks/use-account-type';
 import UserList from '../_components/user-list';
 import { Typography } from 'antd';
-import { useAccountType } from '../../_hooks/use-account-type';
 
 const { Title } = Typography;
 
@@ -15,7 +15,7 @@ const Doctor = () => {
 
   return (
     <div>
-      <Title level={2}>Quản lí bác sĩ</Title>
+      <Title level={2}>Quản lí bac si</Title>
 
       <UserList data={data.data} />
     </div>

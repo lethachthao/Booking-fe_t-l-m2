@@ -1,26 +1,25 @@
-import { deleteAccount } from '../_services/account-service';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { App } from 'antd';
+import { deteleAccount } from '../_services/account-service';
 
 const useDeleteAccount = () => {
-  const queryClient = useQueryClient();
   const { message } = App.useApp();
+  const queryClient = useQueryClient();
 
-  const mutationResults = useMutation({
+  const mutationResult = useMutation({
     mutationFn: (email) => {
-      queryClient.invalidateQueries({ queryKey: ['account-type'] });
-      return deleteAccount(email);
+      return deteleAccount(email);
     },
+
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['account-type'] }); //Sau khi xóa xong thì tìm nạp lại dữ liệu trong nền để cập cập list accout mới nhất
-      message.success('Xoa tai khoan thanh cong');
+      await queryClient.invalidateQueries({ queryKey: ['account-type'] });
+      message.success('Xóa tài khoản thành công');
     },
     onError: () => {
-      message.error('Xoa nguoi dung khong thanh cong');
+      message.error('Xóa tài khoản không thành công ');
     },
   });
-  return mutationResults;
+  return mutationResult;
 };
 
 export default useDeleteAccount;

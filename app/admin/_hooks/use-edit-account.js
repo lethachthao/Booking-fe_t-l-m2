@@ -1,20 +1,21 @@
-import { App } from 'antd';
-import { editAccount } from '../_services/account-service';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { editAccount } from '../_services/account-service';
+import { App, message } from 'antd';
 
 const useEditAccount = () => {
   const { message } = App.useApp();
-  const queryClient = useQueryClient();
+  const quertClient = useQueryClient();
+
   const mutationResults = useMutation({
     mutationFn: (data) => {
       return editAccount(data);
     },
     onSuccess: () => {
-      message.success('Edit tài khoản thành công ');
-      queryClient.invalidateQueries({ queryKey: ['accout-type'] });
+      message.success('Edit thành công');
+      quertClient.invalidateQueries({ queryKey: ['account-type'] });
     },
     onError: () => {
-      message.error('Edit tài khoản thất bại');
+      message.error('edit thất bại');
     },
   });
   return mutationResults;
