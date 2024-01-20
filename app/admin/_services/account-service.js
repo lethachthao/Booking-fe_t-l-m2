@@ -8,7 +8,7 @@ export const getAccountByType = (type) => {
   return axiosInstance.get(`/user/${type}`, type);
 };
 
-export const deteleAccount = (email) => {
+export const deleteAccount = (email) => {
   return axiosInstance.delete('/user/deleteUser', { params: { email } });
 };
 
